@@ -12,5 +12,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify -Pintegracion
+
+      - name: Prepare database for integrtion tests
+        run:
+          sudo /etc/init.d/mysql start
+          mysql -uroot -proot < src/main/resource/database.sql
+          mvn --batch-mode --update-snapshots compile
+          mvn --batch-mode --update-snapshots datanucleus:enhance
+          mvn --batch-mode --update-snapshots datanucleus:schema-create
+          mvn --batch-mode --update-snapshots exec:java -Pdatos
+
+      - name: Build with Maven including integrations tests
+        RUN: MVN --batch-mode --update-snapshots verify -Pintegracion
