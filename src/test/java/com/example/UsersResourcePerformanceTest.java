@@ -58,7 +58,7 @@ public class UsersResourcePerformanceTest {
     @PerfTest(invocations = 1000, threads = 40)
     public void testGetUsersPerformance() {
         GenericType<List<User>> genericType = new GenericType<List<User>>() {};
-		List<User> users = target.path("users").request(MediaType.APPLICATION_JSON).get(genericType);
+		List<User> users = target.path("users").request(MediaType.APPLICATION_JSON).get(genericType);//mal, hace peticion al servidor
         assertEquals(3, users.size());
     }
 }
