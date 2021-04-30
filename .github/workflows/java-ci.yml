@@ -26,4 +26,4 @@ jobs:
           mvn --batch-mode --update-snapshots exec:java -Pdatos
 
       - name: Build with Maven including integrations tests
-        RUN: MVN --batch-mode --update-snapshots verify -Pintegracion
+        run: mvn --batch-mode --update-snapshots verify -Pintegracion
