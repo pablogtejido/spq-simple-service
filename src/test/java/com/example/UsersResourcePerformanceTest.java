@@ -55,7 +55,6 @@ public class UsersResourcePerformanceTest {
      * Test to see that the message "Got it!" is sent in the response.
      */
     @Test
-    @PerfTest(invocations = 1000, threads = 40)
     public void testGetUsersPerformance() {
         GenericType<List<User>> genericType = new GenericType<List<User>>() {};
 		List<User> users = target.path("users").request(MediaType.APPLICATION_JSON).get(genericType);//mal, hace peticion al servidor
